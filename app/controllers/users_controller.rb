@@ -24,7 +24,7 @@ class UsersController < ApplicationController
       }, status: :ok
     else
       render json:{
-        message: @user.errors
+        message: @new_user.errors.full_messages
       }, status: :unprocessable_entity
     end
   end
@@ -36,7 +36,7 @@ class UsersController < ApplicationController
       }, status: :ok
     else
       render json:{
-        message: @user.errors
+        message: @user.errors.full_messages
       }, status: :unprocessable_entity
     end
   end
