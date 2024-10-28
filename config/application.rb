@@ -32,10 +32,12 @@ module PhoneBook
     # Configure CORS for cross-origin requests
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins 'http://localhost:5173/' # You can specify the allowed origins here
-        resource 'api/v1',
+        origins 'http://localhost:5173' # You can specify the allowed origins here
+
+        resource 'api/v1/',
           headers: :any,
-          methods: [:get, :post, :put, :patch, :delete, :options, :head]
+          methods: [:get, :post, :put, :patch, :delete, :options, :head],
+          expose: ['Access-Control-Allow-Origin']
       end
     end
   end
