@@ -34,7 +34,7 @@ module PhoneBook
       allow do
         origins 'http://localhost:5173' # You can specify the allowed origins here
 
-        resource 'api/v1/',
+        resource '*',
           headers: :any,
           methods: [:get, :post, :put, :patch, :delete, :options, :head],
           expose: ['Access-Control-Allow-Origin']

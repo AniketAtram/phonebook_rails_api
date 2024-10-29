@@ -1,8 +1,7 @@
 class Api::V1::UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy]
-  
+  before_action :get_all_users
   def index
-    @users = User.all
     render json:{
       message: "Data is available!",
       users: @users,
@@ -20,7 +19,8 @@ class Api::V1::UsersController < ApplicationController
     @new_user = User.new(user_params)
     if @new_user.save
       render json:{
-        message: "User added successfully!"
+        message: "User added successfully!",
+        users: @users,
       }, status: :ok
     else
       render json:{
@@ -32,7 +32,8 @@ class Api::V1::UsersController < ApplicationController
   def update
     if @user.update(user_params)
       render json:{
-        message: "User details updated successfully!"
+        message: "User details updated successfully!",
+        users: @users,
       }, status: :ok
     else
       render json:{
@@ -44,7 +45,8 @@ class Api::V1::UsersController < ApplicationController
   def destroy
     @user.destroy 
     render json:{
-        message: "User deleted successfully!"
+        message: "User deleted successfully!",
+        users: @users,
       }, status: :ok
   end
 
@@ -56,6 +58,10 @@ class Api::V1::UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def get_all_users
+    @users = User.all
   end
 
 end
